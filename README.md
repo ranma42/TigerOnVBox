@@ -1,4 +1,4 @@
-# Install Mac OS X 10.4 Tiger i386 on VirtualBox
+# Install Mac OS X 10.4 Tiger on VirtualBox
 
 ## Prerequisites
 This guide assumes that you have:
@@ -27,7 +27,7 @@ machine.
 1. select *Machine → New...* from the menu (or click on the *New* button)
 2. choose the name of your virtual machine (the example uses "Tiger")
 3. select **Type: Mac OS X**
-4. select **Version: Mac OS X (32-bit)**
+4. select **Version: Mac OS X (32-bit)** or **Version: Mac OS X (64-bit)**
 5. choose the amount of RAM (default: 2048 MB)
 6. choose *Create a virtual hard disk now*
 
@@ -43,7 +43,8 @@ machine.
 
 ```
 VBoxManage modifyvm Tiger --mouse usb
-VBoxManage modifyvm Tiger --cpuidset 00000000 00000001 756e6547 6c65746e 49656e69
+VBoxManage modifyvm Tiger --firmware efi32
+VBoxManage modifyvm Tiger --cpuidset 00000000 00000003 756e6547 6c65746e 49656e69
 VBoxManage modifyvm Tiger --cpu-profile 'Intel Xeon X5482 3.20GHz'
 VBoxManage setextradata Tiger VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC 1
 ```
@@ -130,3 +131,18 @@ to set the host key to the right command key, as I normally use the left one in
 the host OS (to copy & paste, open *Spotlight* and so on) and being able to use
 the same key combinations in the guest OS makes switching between the two
 environments feel much more seamless.
+
+### Switching between 32 and 64 bits
+Mac OS X 10.4 can only boot from a 32-bit EFI. For this reason, before
+installing the operating system, the VM had to be configured with the command:
+```
+VBoxManage modifyvm Tiger --firmware efi32
+```
+Once the EFI is properly configured, the virtual machine can be switched from 32
+to 64 bit (and vice versa) going in *Settings... → General → Basic* and
+selecting **Version: Mac OS X (32-bit)** or **Version: Mac OS X (64-bit)**.
+
+Remember that binaries built for x86_64 will not be able to run when the virtual
+machine is configured as **Version: Mac OS X (32-bit)**. Instead, when a virtual
+machine configured as **Version: Mac OS X (64-bit)** will be able to run both
+i386 and x86_64 binaries.

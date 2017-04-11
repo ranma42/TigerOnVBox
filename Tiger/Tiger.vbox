@@ -22,11 +22,11 @@
         <LongMode enabled="false"/>
         <HardwareVirtExLargePages enabled="true"/>
         <CpuIdTree>
-          <CpuIdLeaf id="0" eax="1" ebx="1970169159" ecx="1818588270" edx="1231384169"/>
+          <CpuIdLeaf id="0" eax="3" ebx="1970169159" ecx="1818588270" edx="1231384169"/>
         </CpuIdTree>
       </CPU>
       <Memory RAMSize="2048"/>
-      <Firmware type="EFI"/>
+      <Firmware type="EFI32"/>
       <HID Pointing="USBMouse" Keyboard="USBKeyboard"/>
       <HPET enabled="true"/>
       <Chipset type="ICH9"/>
