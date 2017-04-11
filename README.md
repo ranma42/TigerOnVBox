@@ -1,9 +1,9 @@
-# Install MacOS X 10.4 Tiger i386 on VirtualBox
+# Install Mac OS X 10.4 Tiger i386 on VirtualBox
 
 ## Prerequisites
 This guide assumes that you have:
-- a MacOS X host environment, running VirtualBox on an Intel Mac
-- an universal or i386 install image or disk for MacOS X 10.4 Tiger
+- a Mac OS X host environment, running VirtualBox on an Intel Mac
+- a universal or i386 install image or disk for Mac OS X 10.4 Tiger
 
 The environment of the example installation procedure was:
  - MacBook Pro (Retina, 15-inch, Mid 2014)
@@ -14,20 +14,20 @@ The environment of the example installation procedure was:
    [https://developer.apple.com/download/more/](https://developer.apple.com/download/more/))
 
 ## Create a new virtual machine
-If trust the files in the repository and want to skip the procudure you can:
+If trust the files in the repository and want to skip the procedure you can:
 - download [Tiger.ova](Tiger.ova) and import it in VirtualBox (by
   double-clicking it or opening it from *File → Import Appliance...*), or
 - copy the `Tiger` folder from this repository to your `VirtualBox VMs` folder
   and add it in VirtualBox selecting it in from the *Machine → Add...* menu
 
 If you like to see what it takes to get it done, the following step-by-step
-procedure will guide you in the creation and configuraton of the virtual
+procedure will guide you in the creation and configuration of the virtual
 machine.
 
 1. select *Machine → New...* from the menu (or click on the *New* button)
-2. choose the name of your vistual machine (the example uses "Tiger")
-3. select **Type: MacOS X**
-4. select **Version: MacOS X (32-bits)**
+2. choose the name of your virtual machine (the example uses "Tiger")
+3. select **Type: Mac OS X**
+4. select **Version: Mac OS X (32-bit)**
 5. choose the amount of RAM (default: 2048 MB)
 6. choose *Create a virtual hard disk now*
 
@@ -54,16 +54,16 @@ The virtual machine should now be ready for the install procedure. Its `vbox`
 file should match the reference [`Tiger.vbox`](Tiger/Tiger.vbox) except for the
 name, timestamps and UUIDs.
 
-## Install MacOS X
+## Install Mac OS X
 1. start the virtual machine
 2. since it is the first boot, VirtualBox will open a popup asking for the
-   install media; select the MacOSX install disk image
+   install media; select the Mac OS X install disk image
 
 ![Select install media](images/first-boot.png)
 
 3. wait some time for the boot to complete; the system might either immediately
    start or stay frozen for several seconds in a state like the one shown in the
-   following image before geting to the UI; after a minute, if it shows no
+   following image before getting to the UI; after a minute, if it shows no
    progress or if the console shows `Still waiting for root device.`, try
    rebooting the machine
 
