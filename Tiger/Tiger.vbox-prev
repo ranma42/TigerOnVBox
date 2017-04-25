@@ -6,7 +6,7 @@
 ** Use VBoxManage or the VirtualBox Manager GUI to make changes.
 -->
 <VirtualBox xmlns="http://www.virtualbox.org/" version="1.16-macosx">
-  <Machine uuid="{bd6ad508-31d9-43af-82dc-78563580f09e}" name="Tiger" OSType="MacOS" snapshotFolder="Snapshots" lastStateChange="2017-03-29T09:01:38Z">
+  <Machine uuid="{878185ec-fa6b-4bd2-9f4a-e273a24a2da3}" name="Tiger" OSType="MacOS_64" snapshotFolder="Snapshots" lastStateChange="2017-04-24T08:05:15Z">
     <MediaRegistry>
       <HardDisks>
         <HardDisk uuid="{afbd0832-5821-417e-a847-90582413a521}" location="Tiger.vdi" format="VDI" type="Normal"/>
@@ -14,18 +14,22 @@
     </MediaRegistry>
     <ExtraData>
       <ExtraDataItem name="GUI/FirstRun" value="yes"/>
+      <ExtraDataItem name="VBoxInternal/Devices/efi/0/Config/DmiBIOSVersion" value="EFI32..Virtual.Box"/>
+      <ExtraDataItem name="VBoxInternal/Devices/efi/0/Config/DmiUseHostInfo" value="0"/>
     </ExtraData>
     <Hardware>
-      <CPU CpuProfile="Intel Xeon X5482 3.20GHz">
+      <CPU CpuProfile="Intel Pentium 4 3.00GHz">
         <PAE enabled="true"/>
-        <LongMode enabled="false"/>
+        <LongMode enabled="true"/>
         <HardwareVirtExLargePages enabled="true"/>
         <CpuIdTree>
-          <CpuIdLeaf id="0" eax="1" ebx="1970169159" ecx="1818588270" edx="1231384169"/>
+          <CpuIdLeaf id="0" eax="4" ebx="1970169159" ecx="1818588270" edx="1231384169"/>
+          <CpuIdLeaf id="1" eax="3907" ebx="133120" ecx="4227858431" edx="4294967295"/>
+          <CpuIdLeaf id="2147483649" eax="0" ebx="0" ecx="4294967295" edx="4294967295"/>
         </CpuIdTree>
       </CPU>
       <Memory RAMSize="2048"/>
-      <Firmware type="EFI"/>
+      <Firmware type="EFI32"/>
       <HID Pointing="USBMouse" Keyboard="USBKeyboard"/>
       <HPET enabled="true"/>
       <Chipset type="ICH9"/>

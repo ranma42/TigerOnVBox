@@ -44,8 +44,12 @@ machine.
 ```
 VBoxManage modifyvm Tiger --mouse usb
 VBoxManage modifyvm Tiger --firmware efi32
-VBoxManage modifyvm Tiger --cpuidset 00000000 00000003 756e6547 6c65746e 49656e69
-VBoxManage modifyvm Tiger --cpu-profile 'Intel Xeon X5482 3.20GHz'
+VBoxManage modifyvm Tiger --cpu-profile 'Intel Pentium 4 3.00GHz'
+VBoxManage modifyvm Tiger --cpuidset 00000000 00000004 756e6547 6c65746e 49656e69
+VBoxManage modifyvm Tiger --cpuidset 00000001 00000f43 00020800 fbffffff ffffffff
+VBoxManage modifyvm Tiger --cpuidset 80000001 00000000 00000000 ffffffff ffffffff
+VBoxManage setextradata Tiger VBoxInternal/Devices/efi/0/Config/DmiBIOSVersion EFI32..Virtual.Box
+VBoxManage setextradata Tiger VBoxInternal/Devices/efi/0/Config/DmiUseHostInfo 0
 VBoxManage setextradata Tiger VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC 1
 ```
 
@@ -77,6 +81,10 @@ name, timestamps and UUIDs.
 5. from the hidden menu at the top of the screen, select *Utilities → Disk
    Utility...*
 
+   **IMPORTANT**: open *Disk Utility* **immediately** after selecting the
+   language. Stepping through the installation and then running *Disk Utility*
+   will likely result in the hard disk not being shown.
+
 ![Open Disk Utility](images/utilities-du.png)
 
 6. erase the *VBOX HARDDISK* hard disk using a **Mac OS Extended** volume
@@ -87,62 +95,7 @@ the default is *Mac OS Extended (Journaled)*
 
 7. quit *Disk Utility* and proceed with the installation
 
-## Post-installation tuning
-Although not strictly needed, I find it convenient to tune some settings. These
-are optional and independent from each other, but they are documented in case
-you trip on the same inconveniences as I did.
-
-### Remove the optical drive
-Apart from the initial installation, the optical drive is likely not going to be
-needed. It looks like its presence contributes to the chance of a slow boot when
-enumerating the devices, therefore I strongly suggest to remove it.
-
-To remove it, go to *Settings... → Storage*, select the optical drive and then
-*Remove Attachment*.
-
-In case you need it again, go to *Settings... → Storage*, select the controller
-(*Controller SATA*) and then *Add Optical Drive*.
-
-### Change the display resolution
-The lack of guest additions makes it harder to change the resolution of the
-display in an arbitrary way, but there is a simple method to choose between some
-predefined settings. From the command-line, run:
-
-```
-VBoxManage setextradata Tiger VBoxInternal2/EfiGopMode n
-```
-
-where `n` is one of 0-5, respectively representing:
-
-0. 640x480
-1. 800x600
-2. 1024x768
-3. 1280x1024
-4. 1440x900
-5. 1920x1200
-
-### Change the host key
-VirtualBox captures the **host key** and instead of passing it to the virtual
-machine, it uses it to detach the keyboard from the guest OS and as a key
-modifier for the VirtualBox operations.
-
-The left command key (left-⌘) is the default host key. I find it more convenient
-to set the host key to the right command key, as I normally use the left one in
-the host OS (to copy & paste, open *Spotlight* and so on) and being able to use
-the same key combinations in the guest OS makes switching between the two
-environments feel much more seamless.
-
-### Switching between 32 and 64 bits
-Mac OS X 10.4 can only boot from a 32-bit EFI. For this reason, before
-installing the operating system, the VM had to be configured with the command:
-```
-VBoxManage modifyvm Tiger --firmware efi32
-```
-Once the EFI is properly configured, the virtual machine can be switched from 32
-to 64 bit (and vice versa) going in *Settings... → General → Basic* and
-selecting **Version: Mac OS X (32-bit)** or **Version: Mac OS X (64-bit)**.
-
-Remember that binaries built for x86_64 will not be able to run when the virtual
-machine is configured as **Version: Mac OS X (32-bit)**. Instead, when a virtual
-machine configured as **Version: Mac OS X (64-bit)** will be able to run both
-i386 and x86_64 binaries.
+## Additional information
+* [Post-installation tuning](Tuning.md)
+* [Known issues](Issues.md)
+* [Explanation of the settings](Explanation.md)
